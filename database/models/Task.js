@@ -1,22 +1,21 @@
-import { Sequelize } from "sequelize";
-import { db } from "../index.js";
+const Sequelize = require("sequelize");
+const db = require("../db");
 
-export const Task = db.define("task", {
-  content: {
+const Task = db.define("task", {
+  description: {
     type: Sequelize.STRING,
     allowNull: false,
   },
 
   priority: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    defaultValue: 1,
+    type: Sequelize.STRING
   },
 
-  completed: {
+  isComplete: {
     type: Sequelize.BOOLEAN,
     allowNull: false,
-    defaultValue: false,
-  },
+    defaultValue: false
+   }
 });
 
+module.exports = Task;

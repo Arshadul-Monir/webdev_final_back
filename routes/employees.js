@@ -1,46 +1,66 @@
-import express from 'express';
-import { Employee, Task } from '../database/models/index.js';
-
-//initialize router
+const express = require("express");
 const router = express.Router();
+const { Employee, Task } = require("../database/models");
 
-//define routes
+// helper function so we don't need to wrap our
+// handler functions in try-catch blocks;
+// the async handler will catch any errors and pass
+// them to the error-handling middleware (defined in app.js)
+const ash = require("express-async-handler");
 
-/** GET ALL EMPLOYEES: */
-router.get('/', async (req, res, next) => {
-  try {
-    let employees = await Employee.findAll({include: [Task]});
+/** GET ALL employees */
+router.get(
+  "/",
+  ash(async (req, res) => {
+    let employees = await Employee.findAll({ include: [Task] });
     res.status(200).json(employees);
-  } catch(err) {
-    next(err);
-  }
-});
+  })
+);
 
-/***** DELETE EMPLOYEE: *****/
-router.delete("/:id", function (req, res, next) {
-  Employee.destroy({ where: { id: req.params.id } })
-    .then(() => res.status(200).json("EMPLOYEE DELETED"))
-    .catch((err) => next(err));
-});
+/** GET employee BY ID*/
+router.get(
+  "/:id",
+  ash(async (req, res) => {
+    let employee = await Employee.findByPk(req.params.id, { include: [Task] });
+    res.status(200).json(employee);
+  })
+);
 
-/***** ADD EMPLOYEE: *****/
-router.post("/", function (req, res, next) {
-  Employee.create(req.body)
-    .then((newEmployee) => res.status(200).json(newEmployee))
-    .catch((err) => next(err));
-});
+// Delete employee
+router.delete(
+  "/:id",
+  ash(async (req, res) => {
+    await Employee.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.status(200).json("Employee deleted");
+  })
+);
 
-/***** EDIT EMPLOYEE: *****/
-router.put("/:id", async (req, res, next) => {
-  try {
-    await Employee.update(req.body, { where: { id: req.params.id } });
-    let updatedEmployee = await Employee.findByPk(req.params.id);
-    res.status(200).json(updatedEmployee);
-  } catch (err) {
-    next(err);
-  }
-});
+// Add new instructor
+router.post(
+  "/",
+  ash(async (req, res) => {
+    let newEmployee = await Employee.create(req.body);
+    res.status(200).json(newEmployee);
+  })
+);
 
-export {
-    router as employeeRouter,
-};
+// Edit employee
+router.put(
+  "/:id",
+  ash(async (req, res) => {
+    await Employee.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+    });
+    let employee = await Employee.findByPk(req.params.id, { include: [Task] });
+    res.status(201).json(employee);
+  })
+);
+
+// Export our router, so that it can be imported to construct our apiRouter;
+module.exports = router;
