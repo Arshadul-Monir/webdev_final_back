@@ -1,13 +1,13 @@
-import express from 'express';
-import { taskRouter } from './tasks.js';
-import { employeeRouter } from './employees.js';
-
+const express = require("express");
 const router = express.Router();
 
-router.use("/tasks", taskRouter);
-router.use("/employees", employeeRouter);
+// Subrouters;
+const tasksRouter = require("./tasks");
+const employeesRouter = require("./employees");
 
-export {
-    router as apiRouter,
-};
+// Mount our subrouters to assemble our apiRouter;
+router.use("/tasks", tasksRouter);
+router.use("/employees", employeesRouter);
 
+// Export our apiRouter, so that it can be used by our main app in app.js;
+module.exports = router;

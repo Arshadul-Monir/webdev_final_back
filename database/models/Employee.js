@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import { db } from "../index.js";
+const Sequelize = require("sequelize");
+const db = require("../db");
 
-export const Employee = db.define("employee", {
+const Employee = db.define("employee", {
   firstname: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -17,3 +17,4 @@ export const Employee = db.define("employee", {
   },
 });
 
+module.exports = Employee;
