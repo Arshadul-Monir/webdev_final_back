@@ -7,9 +7,10 @@ PLEASE CREATE THE FILE
 and have inside it...
 //
 
-const sqlpassword = "YOUR_SQL_PASSWORD";
+const sqlpassword = "YOUR_SQL_PASSWORD_HERE";
 
-export {sqlpassword};
+module.exports = sqlpassword;
+
 
 //
 Thanks! 
