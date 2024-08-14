@@ -5,6 +5,9 @@ const Task = db.define("task", {
   description: {
     type: Sequelize.STRING,
     allowNull: false,
+    set(value) {
+      this.setDataValue('description', value === '' ? 'No Description' : value);
+    },
   },
 
   priority: {
