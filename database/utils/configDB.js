@@ -2,9 +2,9 @@
 //import {sqlpassword} from 'env_variable'
 
 const dbName = "final-backend";
-const dbUser = "postgres";
+const dbUser = "arshadulmonir";
 //const dbPwd = sqlpassword;
-const dbPwd = "keithj";
+const dbPwd = "Faheem123.11208.";
 
 
 module.exports = {

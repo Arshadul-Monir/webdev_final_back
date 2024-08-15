@@ -1,1 +1,3 @@
 node_modules/
+database/utils/configDB.js
+database/utils/env_variable.js

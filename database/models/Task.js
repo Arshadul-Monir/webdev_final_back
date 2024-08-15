@@ -5,6 +5,7 @@ const Task = db.define("task", {
   description: {
     type: Sequelize.STRING,
     allowNull: false,
+    defaultValue: "No Description",
     set(value) {
       this.setDataValue('description', value === '' ? 'No Description' : value);
     },
