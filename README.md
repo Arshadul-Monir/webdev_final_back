@@ -1,5 +1,6 @@
-# final-backend
+#  CSCI 39548 - Final Project Backend
 
+## Instructions to Set up Local Repository  
 
 PLEASE CREATE THE FILE
 /database/utils/env_varaible.js
@@ -7,10 +8,21 @@ PLEASE CREATE THE FILE
 and have inside it...
 //
 
-const sqlpassword = "YOUR_SQL_PASSWORD_HERE";
-
-module.exports = sqlpassword;
-
+ ```bash
+    const sqlpassword = "YOUR_SQL_PASSWORD_HERE";
+    
+    module.exports = sqlpassword;
+   ```
 
 //
 Thanks! 
+
+## Credits and Links:  
+### Collaborators
+- Jason Akira Jordan : [JasonAJordan](https://github.com/JasonAJordan)  
+- Kyle R. Bautista : [KymaiselHunter](https://github.com/KymaiselHunter)
+- Arshadul Faheem Monir : [Arshadul-Monir](https://github.com/Arshadul-Monir)
+
+### Repository Links
+- [FrontEnd](https://github.com/Arshadul-Monir/webdev_final_front)  
+- [BackEnd](https://github.com/arshadul-Monir/webdev_final_back)
